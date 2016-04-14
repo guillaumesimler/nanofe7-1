@@ -1,13 +1,15 @@
 ## Neighborhood map
 
-Authors
+Author
 ----
 
 Guillaume Simler, a Udacity Frontend Nanodegree, more information and contact details on my [Github profile](https://github.com/guillaumesimler)
 
 Project description
 ----
+This project is a variation of the neighborhood map. It doesn't represent my immediate neighborhood, but the Scottisch Highlands. It's been a while since I want to build an app managing my tours in the Highlands, climbing [Munros](https://en.wikipedia.org/wiki/Munro)
 
+This variation should fit Udacity's project requirements.
 
 Aim of the project
 ----
