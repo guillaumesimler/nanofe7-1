@@ -14,67 +14,25 @@ It uses widely the Jquery AJAX function (http://api.jquery.com/jquery.ajax/)
 
 
 var gMap = {
-	
-		
-	// ------------------ model --------
-	model:{
-		//Map center: coordinates of Tyndrum Station
-		center: {
-			lat: 56.436425, 
-			lng: -4.711097
-		},
-
-		//Markers:
-
-		locations:[
-			{name: 'Glengarry House',
-			position:{
-				lat: 56.431270,
-				lng: -4.702900
-				}	
-			},
-
-			{name: 'Bridge of Orchy Hotel',
-			position:{
-				lat: 56.517778, 
-				lng: -4.768667
-				}	
-			},
-
-			{name: 'Ben Lui',
-			position:{
-				lat: 56.397507, 
-				lng: -4.810323 
-				}	
-			},
-
-			{name: 'Beinn Dorain',
-			position:{
-				lat: 56.502835, 
-				lng: -4.722226 
-				}	
-			},
-
-			{name: 'Beinn an Dòthaidh',
-			position:{
-				lat: 56.529969, 
-				lng: -4.714415 
-				}	
-			}
-		]
-
-	},
 
 	// ------------------ controller ------
 
 	controller:{
 	
 		getMapCenter: function(){
-			return gMap.model.center;
+			return model.map.center;
 		},
 
 		getMarkerData: function(){
-			return gMap.model.locations;
+			var locations = model.locations;
+
+			locations.forEach( function(location) {
+				var Url = model.Icons[location.type].url;	
+				location.image = Url;
+				console.log(location);
+			});
+
+			return locations;
 		}
 	},
 
@@ -92,17 +50,29 @@ var gMap = {
 		},
 
 		initMarker: function(data) {
-
 			var locations = gMap.controller.getMarkerData();
 
-			for (var i=0; i < locations.length; i++) {
+			locations.forEach( function(location) {
+				var i = 0;
+
+				var image = {
+					url: location.image,
+					// This marker is 32 pixels wide by 32 pixels high.
+					size: new google.maps.Size(32, 32),
+					// The origin for this image is (0, 0).
+					origin: new google.maps.Point(0, 0),
+					// The anchor for this image is the base of the flagpole at (0, 32).
+					anchor: new google.maps.Point(0, 32)
+				}
+
 				var marker = new google.maps.Marker({
-					position: locations[i].position,
+					position: location.position,
 					map: data,
-					title: locations[i].name,
-					zIndex: i,
+					title: location.name,
+					zIndex: i++,
+					icon: image
 				});
-			}
+			});
 		}
 	}
 }
