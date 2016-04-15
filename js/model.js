@@ -5,7 +5,7 @@ var model = {
 			lat: 56.436425, 
 			lng: -4.711097
 			},
-		zoom: 10
+		zoom: 11
 	},
 
 	//Markers:

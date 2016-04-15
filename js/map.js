@@ -27,9 +27,7 @@ var gMap = {
 			var locations = model.locations;
 
 			locations.forEach( function(location) {
-				var Url = model.Icons[location.type].url;	
-				location.image = Url;
-				console.log(location);
+				location.image = model.Icons[location.type].url;
 			});
 
 			return locations;
@@ -42,7 +40,8 @@ var gMap = {
 		initMap: function() {
 			var map = new google.maps.Map(document.getElementById('map-section'), {
 				center: gMap.controller.getMapCenter(),
-				zoom: 10
+				zoom: 10,
+				mapTypeId: google.maps.MapTypeId.TERRAIN
 			});	
 
 			this.initMarker(map);
