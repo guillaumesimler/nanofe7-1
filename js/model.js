@@ -124,6 +124,22 @@ var model = {
 			},
 		type: 'Walk'
 		},
+
+		{name: 'Beinn a’ Chleibh',
+		position:{
+			lat: 56.390144,
+			lng: -4.835627
+			},
+		type: 'Summit'
+		},
+
+		{name: 'Stob Coire a’ Chàirn',
+		position:{
+			lat: 56.750649,
+			lng: -4.969177
+			},
+		type: 'Summit'
+		}
 	],
 
 	// Icons: Designed by Laura Reen https://www.iconfinder.com/DemSt
