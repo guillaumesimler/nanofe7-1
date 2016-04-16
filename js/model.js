@@ -139,7 +139,16 @@ var model = {
 			lng: -4.969177
 			},
 		type: 'Summit'
-		}
+		},
+
+		{name: "King's House Hotel",
+		position:{
+			lat: 56.651129,
+			lng: -4.840683
+			},
+		type: 'Accomodation'
+		},
+
 	],
 
 	// Icons: Designed by Laura Reen https://www.iconfinder.com/DemSt

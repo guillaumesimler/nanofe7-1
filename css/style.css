@@ -1,22 +1,22 @@
 .row {
-	height: 100vh;
+	height: 90vh;
 }
-
-
 .map {
 	min-height: 100px;
 	height: 100%;
 }
 
-.text {
-	padding: 10px;
-}
-
 body {
 	background-color: #737273;
 	color:#fff;
+	padding: 10px
 }
 
-h3 {
-	font-size: 14px;
+header, footer {
+	height: 5vh;
+}
+
+
+a {
+	color: #72a72f;
 }
