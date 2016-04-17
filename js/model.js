@@ -1,14 +1,38 @@
+/*
+model.js, programmed by Guillaume SIMLER
+---------------------------------------------
+
+This file is the module which handles the data.
+
+It uses widely the google maps API (https://developers.google.com/maps/?hl=en).
+
+Personal comment: Gosh, I would love to use a database !!! Try to implement Fireflash later
+
+*/
+
+
 var model = {
-	//Map center: coordinates of Tyndrum Station
+	/*The data for Google Map Init
+	
+	Map center: coordinates of Tyndrum Station*/
 	map:{
 		center: {
 			lat: 56.436425, 
 			lng: -4.711097
 			},
-		zoom: 11
+		zoom: 11,
+		mapTypeId: 'google.maps.MapTypeId.TERRAIN'
 	},
 
-	//Markers:
+	/*The data for placing the markers. The structure is the following
+		name (string): "name of the place"
+		position (object): composed by latitude (lat) and longitude (lng) and their respective coordinates in WGS84 format
+		type (string): potential choice Accommodation, Summit, Walk
+
+	Additional data will not be added by gMAP.controller.getMarkerData
+		url (string): url of the images linked to the type as described in the next object (only to an intermediary object)S
+		
+	*/
 
 	locations:[{
 		name: 'Glengarry House',
@@ -151,7 +175,10 @@ var model = {
 
 	],
 
-	// Icons: Designed by Laura Reen https://www.iconfinder.com/DemSt
+	/* Icons: 
+		- Specific Design for each Type
+		- Design by Laura Reen https://www.iconfinder.com/DemSt	
+	*/
 
 	Icons:{
 		Summit:{
