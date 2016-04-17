@@ -21,7 +21,7 @@ var model = {
 			lng: -4.711097
 			},
 		zoom: 11,
-		mapTypeId: 'google.maps.MapTypeId.TERRAIN'
+		
 	},
 
 	/*The data for placing the markers. The structure is the following

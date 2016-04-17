@@ -33,6 +33,7 @@ var gMap = {
 				location.image = model.Icons[location.type].url;
 			});
 
+			console.log(locations)
 			return locations;
 		}
 	},
@@ -49,7 +50,7 @@ var gMap = {
 			var map = new google.maps.Map(document.getElementById('map-section'), {
 				center: mapAttr.center,
 				zoom: mapAttr.zoom,
-				mapTypeId: mapAttr.mapTypeId
+				mapTypeId: google.maps.MapTypeId.TERRAIN
 			});	
 
 			//Run the function loading the Markers
