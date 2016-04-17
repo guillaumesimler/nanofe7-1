@@ -6,6 +6,11 @@
 	height: 100%;
 }
 
+.text-list {
+	color: #72a72f;
+	font-weight: bold;
+}
+
 body {
 	background-color: #737273;
 	color:#fff;

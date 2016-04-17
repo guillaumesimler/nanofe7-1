@@ -21,7 +21,13 @@
 			<div id="map-section" class="map col-xs-9"></div>
 			
 			<div id="class-section" class="text col-xs-3">
-				
+				<h5>Munros & Co. <h5>
+
+				<ul data-bind="foreach: locations">
+					<li>
+						<span  class="text-list" data-bind="text: name"></span>, a <span data-bind="text: type"></span>
+					</li>
+				</ul>
 			</div>
 		</div>
 		
@@ -41,6 +47,7 @@
 	<script type="text/javascript" src="js/model.js"></script>		
 	<script type="text/javascript" src="js/map.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4EO8h7lLzFAB_Y3jaflAJkFdhRgr_OVc&callback=gMap.view.initMap" async defer></script>
+    	<!-- Load app -->
 
 	
 	<script type="text/javascript" src="js/app.js"></script>
