@@ -64,6 +64,12 @@ var gMap = {
 					anchor: new google.maps.Point(0, 32)
 				}
 
+				var contentString = '<div class="infotext">A nice place ' + location.name + '</div>';
+
+				var infowindow = new google.maps.InfoWindow({
+			    	content: contentString
+				});
+
 				var marker = new google.maps.Marker({
 					position: location.position,
 					map: data,
@@ -71,6 +77,11 @@ var gMap = {
 					zIndex: i++,
 					icon: image
 				});
+
+				marker.addListener('click', function() {
+					infowindow.open(data, marker);
+				});
+
 			});
 		}
 	}

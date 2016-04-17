@@ -11,6 +11,10 @@
 	font-weight: bold;
 }
 
+.infotext {
+	color: black;
+}
+
 body {
 	background-color: #737273;
 	color:#fff;
