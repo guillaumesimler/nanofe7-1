@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-html> 
+<html> 
 
 <head>
 	<meta charset="UTF-8">
@@ -15,6 +15,11 @@ html>
 </header>
 
 <section>
+	<h2>Munro List</h2>
+
+	<div>
+		<ul data-bind="template: {name: 'list-template'}"></ul>
+	</div>
 </section>
 
 <footer>
@@ -22,9 +27,17 @@ html>
 
 <!-- Script Section -->
 
+	<!-- Templates -->
+	<script type="text/html" id="list-template">
+		<li data-bind="text: name"> </li>
+	</script>
+
 	<!-- Load Libraries-->
-	<script type="text/javascript" src="js\lib\jquery-2.2.3.min.js"></script>
-	<script type="text/javascript" src="js\lib\knockout-3.4.0.js"></script>
+	<script type="text/javascript" src="js\libs\jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js\libs\knockout-3.4.0.js"></script>
+	<!-- Load Modules -->
+	<script type="text/javascript" src="js\model.js"></script>
+	<script type="text/javascript" src="js\app.js"></script>
 
 </body>
 
