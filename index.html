@@ -18,7 +18,8 @@
 	<h2>Munro List</h2>
 
 	<div>
-		<ul data-bind="template: {name: 'list-template'}"></ul>
+		<ul data-bind="template: {name: 'list-template', foreach: viewModel} "></ul>
+
 	</div>
 </section>
 
@@ -29,7 +30,9 @@
 
 	<!-- Templates -->
 	<script type="text/html" id="list-template">
-		<li data-bind="text: name"> </li>
+		<li> 
+			<span data-bind="text: name"></span>, a good <span data-bind="text: type"></span>  
+		</li>
 	</script>
 
 	<!-- Load Libraries-->
