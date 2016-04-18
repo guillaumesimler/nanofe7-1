@@ -9,168 +9,119 @@
 
 // };
 
-var places = [{
-		name: 'Glengarry House',
-		position:{
-			lat: 56.431270,
-			lng: -4.702900
-			},
-		type: 'Accomodation'	
-		},
+var locJson = model.locations;
 
-		{
-		name: 'Bridge of Orchy Hotel',
-		position:{
-			lat: 56.517778, 
-			lng: -4.768667
-			},
-		type: 'Accomodation'
+var mapJson = model.map;
 
-		},
 
-		{name: 'Ben Lui',
-		position:{
-			lat: 56.397507, 
-			lng: -4.810323 
-			},
-		type: 'Summit'	
-		},
+var Place = function(data) {
+	this.Type = ko.observable(data.type);
+	this.Name = ko.observable(data.name);
+	this.Position = ko.observable(data.position);
+	this.Marker = ko.observable(data.Marker);
 
-		{name: 'Beinn Dorain',
-		position:{
-			lat: 56.502835, 
-			lng: -4.722226 
-			},
-		type: 'Summit'	
-		},
+	this.Url = ko.computed(function(){
+		var Url = model.Icons;
 
-		{name: 'Beinn an Dòthaidh',
-		position:{
-			lat: 56.529969, 
-			lng: -4.714415 
-			},
-		type: 'Summit'
-		},
+		if (data.type === 'Summit') {
+			return Url.Summit.url;
+		}
 
-		{name: 'Clachaig Inn',
-		position:{
-			lat: 56.664364, 
-			lng: -5.056212 
-			},
-		type: 'Accomodation'
-		},
+		if (data.type === 'Walk') {
+			return Url.Walk.url;
+		}
 
-		{name: 'Am Bodach',
-		position:{
-			lat: 56.74086,
-			lng: -4.98394 
-			},
-		type: 'Summit'
-		},
+		if (data.type === 'Accomodation') {
+			return Url.Accomodation.url;
+		}
 
-		{name: 'Stob Ban',
-		position:{
-			lat: 56.743772,
-			lng: -5.030793
-			},
-		type: 'Summit'
-		},
+	}, this);
 
-		{name: 'Mullach nan Coirean',
-		position:{
-			lat: 56.749867,
-			lng: -5.072397
-			},
-		type: 'Summit'
-		},
 
-		{name: 'Ben Challum',
-		position:{
-			lat: 56.454708,
-			lng: -4.61977
-			},
-		type: 'Summit'
-		},
+};
 
-		{name: 'Beinn Mhanach',
-		position:{
-			lat: 56.535031,
-			lng: -4.646462
-			},
-		type: 'Summit'
-		},
 
-		{name: 'Glentower Lower Observatory',
-		position:{
-			lat: 56.813563,
-			lng: -5.118816
-			},
-		type: 'Accomodation'
-		},
 
-		{name: 'Glen Nevis',
-		position:{
-			lat: 56.777631, 
-			lng: -5.000240
-			},
-		type: 'Walk'
-		},
 
-		{name: 'Glenn Falloch',
-		position:{
-			lat: 56.348641,
-			lng: -4.697225
-			},
-		type: 'Walk'
-		},
-
-		{name: 'Beinn a’ Chleibh',
-		position:{
-			lat: 56.390144,
-			lng: -4.835627
-			},
-		type: 'Summit'
-		},
-
-		{name: 'Stob Coire a’ Chàirn',
-		position:{
-			lat: 56.750649,
-			lng: -4.969177
-			},
-		type: 'Summit'
-		},
-
-		{name: "King's House Hotel",
-		position:{
-			lat: 56.651129,
-			lng: -4.840683
-			},
-		type: 'Accomodation'
-		},
-
-	];
-
-var viewModel = {
-	locations: ko.observableArray(gMap.controller.getMapMakerData()),
-
-	query: ko.observableArray(''),
-
-	search: function(value) {
-		viewModel.locations.removeAll();
-
-		for(var i=0; i < places.length; i++){
+var gMap = {
 	
-			if ((places[i].name.toLowerCase().indexOf(value.toLowerCase()) >= 0) 
-				|| (places[i].type.toLowerCase().indexOf(value.toLowerCase()) >= 0)){
-				viewModel.locations.push(places[i]);
+	initMap: function () {
+		var mapAttr = mapJson;
 
-			};
-		};
+		//Load the map
+		var map = new google.maps.Map(document.getElementById('map-section'), {
+			center: mapAttr.center,
+			zoom: mapAttr.zoom,
+			mapTypeId: google.maps.MapTypeId.TERRAIN
+		});	
 
+		this.initMarker(map, locJson);
+			
+	},
+
+	initMarker: function(data, locations) {
+
+		//Get the object containing the markers's attributes
+				// For Loop to implement each marker
+
+
+
+		locations.forEach( function(location) {
+			var i = 0;
+
+			// format the type specific icon
+			// var image = {
+			// 	url: location.image,
+			// 	// This marker is 32 pixels wide by 32 pixels high.
+			// 	size: new google.maps.Size(32, 32),
+			// 	// The origin for this image is (0, 0).
+			// 	origin: new google.maps.Point(0, 0),
+			// 	// The anchor for this image is the base of the flagpole at (0, 32).
+			// 	anchor: new google.maps.Point(0, 32)
+			// };
+
+			//Insert the text of the info string
+
+			var contentString = '<div class="infotext">A nice place ' + location.name + '</div>';
+
+			var infowindow = new google.maps.InfoWindow({
+		    	content: contentString
+			});
+
+			//Create the marker(s)
+
+			var marker = new google.maps.Marker({
+				position: location.position,
+				map: data,
+				title: location.name,
+				zIndex: i++,
+				//icon: image
+			});
+
+			//Add an event listener to react on click
+			marker.addListener('click', function() {
+				infowindow.open(data, marker);
+			});
+
+			model.locations.marker = marker;
+		});
+	},
+
+};
+
+
+var viewModel = function() {	
+		var self = this;
+
+		this.locations = ko.observableArray([]);
+
+		locJson.forEach( function(loc) {
+			self.locations.push(new Place(loc));
+		});
+
+		console.log(this.locations()[0])
 	}
-}
 
-viewModel.query.subscribe(viewModel.search);
 
-ko.applyBindings(viewModel);
+ko.applyBindings(viewModel)	;
 

@@ -22,11 +22,11 @@
 			
 			<div id="class-section" class="text col-xs-3">
 				<h5>Munros & Co. <h5>
-
-				<input class="input-field" placeholder="Search place or type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+<!-- 
+				<input class="input-field" placeholder="Search place or type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off"> -->
 
 				<br>
-				<div data-bind="visible: locations().length > 0">
+				<div>
 					<ul data-bind="template: {name: 'location-list', foreach: locations}">
 					</ul>
 				</div>
@@ -42,7 +42,10 @@
 	<!-- Knockout templates -->
 	<script type="text/html" id="location-list">
 		<li>
-			<span  class="text-list" data-bind="text: name"></span>
+			<span  class="text-list" data-bind="text: Name"></span> <br>
+			<span  class="text-list" data-bind="text: Type"></span>
+			<br>
+			<span  class="text-list" data-bind="text: Marker"></span>
 		</li>
 		<br>
 	</script>
@@ -57,7 +60,7 @@
 			<!-- Load maps -->
 	<script type="text/javascript" src="js/model.js"></script>		
 	<script type="text/javascript" src="js/map.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4EO8h7lLzFAB_Y3jaflAJkFdhRgr_OVc&callback=gMap.view.initMap" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4EO8h7lLzFAB_Y3jaflAJkFdhRgr_OVc&callback=gMap.initMap" async defer></script>
     	<!-- Load app -->
 	<script type="text/javascript" src="js/app.js"></script>
 
