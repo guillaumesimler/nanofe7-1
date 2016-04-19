@@ -17,8 +17,14 @@
 <section>
 	<h2>Munro List</h2>
 
+	<div> 
+		<input placeholder="Search a place or a type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+	</div>
+	
+	<br><br>
+
 	<div>
-		<ul data-bind="template: {name: 'list-template', foreach: viewModel} "></ul>
+		<ul data-bind="template: {name: 'list-template', foreach: searchedPlaces} "></ul>
 
 	</div>
 </section>
@@ -31,8 +37,9 @@
 	<!-- Templates -->
 	<script type="text/html" id="list-template">
 		<li> 
-			<span data-bind="text: name"></span>, a good <span data-bind="text: type"></span>  
+			<span data-bind="text: name"></span> (<span data-bind="text: type"></span>) 
 		</li>
+		<br>
 	</script>
 
 	<!-- Load Libraries-->
