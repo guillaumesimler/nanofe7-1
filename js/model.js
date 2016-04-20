@@ -122,7 +122,7 @@ var locations= [{
 	type: 'Walk'
 	},
 
-	{name: 'Glenn Falloch',
+	{name: 'Falls Of Falloch',
 	position:{
 		lat: 56.348641,
 		lng: -4.697225
