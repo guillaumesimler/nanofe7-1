@@ -25,7 +25,11 @@
 
 	<div>
 		<ul data-bind="template: {name: 'list-template', foreach: searchedPlaces} "></ul>
+	</div>
 
+	<h4>Answer box</h4>
+	<div id="ajax-answer">
+		
 	</div>
 </section>
 
@@ -36,7 +40,7 @@
 
 	<!-- Templates -->
 	<script type="text/html" id="list-template">
-		<li> 
+		<li data-bind="click: loadWiki"> 
 			<span data-bind="text: name"></span> (<span data-bind="text: type"></span>) 
 		</li>
 		<br>

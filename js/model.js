@@ -74,7 +74,7 @@ var locations= [{
 	type: 'Summit'
 	},
 
-	{name: 'Stob Ban',
+	{name: 'Stob Ban (Mamores)',
 	position:{
 		lat: 56.743772,
 		lng: -5.030793
