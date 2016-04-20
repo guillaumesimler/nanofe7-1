@@ -1,18 +1,32 @@
+var createLoc = function(data) {
+    var self = this;
 
+    self.name = data.name;
+    self.position = data.position;
+    self.type = data.type;
 
+    self.image = function(data) {
+        return Icons[data.type].url
+    };
 
+};
 
 
 var viewModel = function() {
 
 	var self = this;
+    
+	self.places = ko.observableArray([]);
 
-	self.places = ko.observableArray(locations);
+    locations.forEach( function(location) {
+        self.places().push(new createLoc(location));
+    });
 
 	self.query = ko.observable('');
 
 	self.searchedPlaces = ko.computed(function() {
 		return ko.utils.arrayFilter(self.places(), function(item) {
+            console.log(item);
 			return (item.name.toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type.toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
         });
 	});
