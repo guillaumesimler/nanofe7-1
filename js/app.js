@@ -7,7 +7,7 @@ var createLoc = function(data) {
 
     self.image = function(data) {
         return Icons[data.type].url
-    };
+    }(self);
 
 };
 

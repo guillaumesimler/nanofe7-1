@@ -31,16 +31,10 @@ var initMarker = function(data) {
 	locations.forEach( function(location) {
 		var i = 0;
 
-		// format the type specific icon
-		// var image = {
-		// 	url: location.image,
-		// 	// This marker is 32 pixels wide by 32 pixels high.
-		// 	size: new google.maps.Size(32, 32),
-		// 	// The origin for this image is (0, 0).
-		// 	origin: new google.maps.Point(0, 0),
-		// 	// The anchor for this image is the base of the flagpole at (0, 32).
-		// 	anchor: new google.maps.Point(0, 32)
-		// }
+		var place = new createLoc(location);
+
+
+		console.log(place)
 
 		//Insert the text of the info string
 		
@@ -57,7 +51,7 @@ var initMarker = function(data) {
 			map: map,
 			title: location.name,
 			zIndex: i++,
-			//icon: image
+			icon: place.image
 		});
 
 		//Add an event listener to react on click
