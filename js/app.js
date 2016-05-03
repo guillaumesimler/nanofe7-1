@@ -34,6 +34,8 @@ var viewModel = function() {
 
 
 
+
+
 var loadWiki = function(input) {
 
 	console.log(input)
@@ -61,7 +63,7 @@ var loadWiki = function(input) {
 				$wiki.append('<h5> <a href="' + articleUrl + '" target="_blank">' + articleList + '</a></h5>' +
             	'<p>' + articleSum + '</p>');
             } else {
-            	$wiki.append('<p> failed to get this specific wikipedia article about' + Input + 
+            	$wiki.append('<p> failed to get this specific wikipedia article about ' + Input + 
             		'</p><p>Please try with the <a href="https://en.wikipedia.org/wiki/Munro" target="_blank">generic article about Munros</a></p>')
             }
         }   

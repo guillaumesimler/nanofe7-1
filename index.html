@@ -7,39 +7,42 @@
 	<title>Guillaume's second run</title>
 	<meta name="author" value="Guillaume Simler">
 
+	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+
 </head>
 
-<body>
+<body class="container-fluid">
 
 <header>
 
 </header>
 
-<section>
+<section class="row">
 
 
-	<section class="container-fluid">
-		<div class="row">
-			<div id="map-section" class="map col-xs-9" style="height: 250px"></div>
+	<article class="col-xs-9"> 
+		<div id="map-section" class="map " style="height: 100vh"></div>
 
-	</section>
+	</article>
 	
-	<h2>Munro List</h2>
+	<article class="col-xs-3">
+		<h2>Munro List</h2>
 
-	<div> 
-		<input placeholder="Search a place or a type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
-	</div>
-	
-	<br><br>
-
-	<div>
-		<ul data-bind="template: {name: 'list-template', foreach: searchedPlaces} "></ul>
-	</div>
-
-	<h4>Answer box</h4>
-	<div id="ajax-answer">
+		<div> 
+			<input placeholder="Search a place or a type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+		</div>
 		
-	</div>
+		<br><br>
+
+		<div>
+			<ul data-bind="template: {name: 'list-template', foreach: searchedPlaces} "></ul>
+		</div>
+
+		<h4>Answer box</h4>
+		<div id="ajax-answer">
+		
+		</div>
+	</article>
 </section>
 
 <footer>
