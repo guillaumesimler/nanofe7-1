@@ -71,5 +71,3 @@ var loadWiki = function(input) {
 
 
 ko.applyBindings(new viewModel());
-
-
