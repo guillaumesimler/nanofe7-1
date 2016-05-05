@@ -1,14 +1,16 @@
 
-var createLoc = function(data) {
+var Place = function(data) {
     var self = this;
 
-    self.name = data.name;
-    self.position = data.position;
-    self.type = data.type;
+    self.name = ko.observable(data.name);
+    self.position = ko.observable(data.position);
+    
+    self.type = ko.observable(data.type);
+    self.image = ko.observable(function(data) {
+        return Icons[data.type()].url
+    }(self));
 
-    self.image = function(data) {
-        return Icons[data.type].url
-    }(self);
+
 
 };
 
@@ -19,7 +21,7 @@ var viewModel = function() {
 	self.places = ko.observableArray('');
 
     locations.forEach( function(location) {
-        self.places().push(new createLoc(location));
+        self.places().push(new Place(location));
     });
 
 	self.query = ko.observable('');
@@ -27,7 +29,7 @@ var viewModel = function() {
 	self.searchedPlaces = ko.computed(function() {
 		return ko.utils.arrayFilter(self.places(), function(item) {
             console.log(item);
-			return (item.name.toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type.toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
+			return (item.name().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
         });
 	});
 }
@@ -40,7 +42,7 @@ var loadWiki = function(input) {
 
 	console.log(input)
 
-	var Input = input.name;
+	var Input = input.name();
     var content;
 
     // Load Wikipedia Article
@@ -64,6 +66,7 @@ var loadWiki = function(input) {
 				content = '<h5> <a href="' + articleUrl + '" target="_blank">' + articleList + '</a></h5>' +
             	'<p>' + articleSum + '</p>';
             } else {
+
             	content = ('<p> failed to get this specific wikipedia article about ' + Input + 
             		'</p><p>Please try with the <a href="https://en.wikipedia.org/wiki/Munro" target="_blank">generic article about Munros</a></p>')
             }

@@ -38,7 +38,7 @@ var initMarker = function() {
 	locations.forEach( function(location) {
 		var i = 0;
 
-		var place = new createLoc(location);
+		var place = new Place(location);
 
 
 		console.log(place)
@@ -59,7 +59,7 @@ var initMarker = function() {
 			title: location.name,
 			animation: google.maps.Animation.DROP,
 			zIndex: i++,
-			icon: place.image
+			icon: place.image()
 		});
 
 
