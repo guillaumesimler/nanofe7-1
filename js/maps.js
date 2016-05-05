@@ -4,18 +4,6 @@ var marker;
 var map;
 
 
-var createLoc = function(data) {
-    var self = this;
-
-    self.name = data.name;
-    self.position = data.position;
-    self.type = data.type;
-
-    self.image = function(data) {
-        return Icons[data.type].url
-    }(self);
-
-};
 
 
 
@@ -36,12 +24,15 @@ var initMap = function() {
 
 };
 
+var failMap = function() {
+	var errorMsg = '<div><img src="images/error.jpg" alt="a picture from Ben Lui" class="img-responsive"><p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p></div>'; 
+	$("#map-section").append(errorMsg);
+};
 
 
 var initMarker = function() {
 
 //Get the object containing the markers's attributes
-
 
 	// For Loop to implement each marker
 	locations.forEach( function(location) {
@@ -66,18 +57,32 @@ var initMarker = function() {
 			position: location.position,
 			map: map,
 			title: location.name,
+			animation: google.maps.Animation.DROP,
 			zIndex: i++,
 			icon: place.image
 		});
+
+
+		var toggleBounce = function() {
+			if (marker.getAnimation() !== null) {
+				marker.setAnimation(null);
+			} else {
+		   		marker.setAnimation(google.maps.Animation.BOUNCE);
+			}
+		};
 
 		//Add an event listener to react on click
 		marker.addListener('click', function() {
 			infowindow.open(map, marker);
 		});
 
+		marker.addListener('click', toggleBounce);
+
 		markers.push(marker);
 
 	});
 
 };
+
+
 

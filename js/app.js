@@ -69,17 +69,22 @@ var loadWiki = function(input) {
             }
 
             $wiki.append(content);
+
+            return content;
         },
         error: function(response){
             content = ('<p> failed to get this specific wikipedia article about ' + Input + 
                 '</p><p>A major problem occured with Wikipedia - please try later or contact your administrator</a></p>')
             $wiki.append(content);
-        } 
+
+            return content;
+        }
 
        
     });
 
-   
+    console.log(content);
+       
 
 };
 
