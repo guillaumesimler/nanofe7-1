@@ -8,6 +8,7 @@
 	<meta name="author" value="Guillaume Simler">
 
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	<link rel="stylesheet" type="text/css" href="css/style.css">
 
 </head>
 
@@ -21,7 +22,7 @@
 
 
 	<article class="col-xs-9"> 
-		<div id="map-section" class="map " style="height: 100vh"></div>
+		<div id="map-section" class="map " ></div>
 
 	</article>
 	
@@ -29,7 +30,7 @@
 		<h2>Munro List</h2>
 
 		<div> 
-			<input placeholder="Search a place or a type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off">
+			<input placeholder="Search a place or a type" type="search" data-bind="value: query, valueUpdate: 'keyup'" autocomplete="off" class="input-field">
 		</div>
 		
 		<br><br>
@@ -42,6 +43,12 @@
 		<div id="ajax-answer">
 		
 		</div>
+
+		<div class="credits"><em>Credits</em> <br>
+
+			Icons by <a href="https://www.iconfinder.com/DemSt"><b>Laura Reen</b></a> used under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons (Attribution 3.0 Unported)</a> 
+		</div>
+
 	</article>
 </section>
 
