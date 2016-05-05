@@ -1,3 +1,4 @@
+
 var createLoc = function(data) {
     var self = this;
 
