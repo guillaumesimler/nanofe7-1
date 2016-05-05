@@ -11,12 +11,11 @@ var createLoc = function(data) {
 
 };
 
-
 var viewModel = function() {
 
 	var self = this;
     
-	self.places = ko.observableArray([]);
+	self.places = ko.observableArray('');
 
     locations.forEach( function(location) {
         self.places().push(new createLoc(location));
@@ -41,6 +40,7 @@ var loadWiki = function(input) {
 	console.log(input)
 
 	var Input = input.name;
+    var content;
 
     // Load Wikipedia Article
 	$wiki = $('#ajax-answer');
@@ -60,15 +60,26 @@ var loadWiki = function(input) {
             var articleUrl = response[3][0];
 
             if (articleList){
-				$wiki.append('<h5> <a href="' + articleUrl + '" target="_blank">' + articleList + '</a></h5>' +
-            	'<p>' + articleSum + '</p>');
+				content = '<h5> <a href="' + articleUrl + '" target="_blank">' + articleList + '</a></h5>' +
+            	'<p>' + articleSum + '</p>';
             } else {
-            	$wiki.append('<p> failed to get this specific wikipedia article about ' + Input + 
+            	content = ('<p> failed to get this specific wikipedia article about ' + Input + 
             		'</p><p>Please try with the <a href="https://en.wikipedia.org/wiki/Munro" target="_blank">generic article about Munros</a></p>')
             }
-        }   
-    
+
+            $wiki.append(content);
+        },
+        error: function(response){
+            content = ('<p> failed to get this specific wikipedia article about ' + Input + 
+                '</p><p>A major problem occured with Wikipedia - please try later or contact your administrator</a></p>')
+            $wiki.append(content);
+        } 
+
+       
     });
+
+   
+
 };
 
 

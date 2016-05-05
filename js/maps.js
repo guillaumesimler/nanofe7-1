@@ -3,6 +3,22 @@ var markers = [];
 var marker;
 var map;
 
+
+var createLoc = function(data) {
+    var self = this;
+
+    self.name = data.name;
+    self.position = data.position;
+    self.type = data.type;
+
+    self.image = function(data) {
+        return Icons[data.type].url
+    }(self);
+
+};
+
+
+
 var initMap = function() {
 		
 	//Get the data for the map
@@ -16,13 +32,13 @@ var initMap = function() {
 	});	
 
 	//Run the function loading the Markers
-	this.initMarker(map);
+	this.initMarker();
 
 };
 
 
 
-var initMarker = function(data) {
+var initMarker = function() {
 
 //Get the object containing the markers's attributes
 
