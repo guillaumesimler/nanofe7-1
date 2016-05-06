@@ -20,19 +20,48 @@ var initMap = function() {
 	});	
 
 	//Run the function loading the Markers
-	this.initMarker();
+	this.viewModel();
+
+
+	// Apply knowck out binding
+	ko.applyBindings(new viewModel());
 
 };
 
-var failMap = function() {
-	var errorMsg = '<div><img src="images/error.jpg" alt="a picture from Ben Lui" class="img-responsive"><p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p></div>'; 
-	$("#map-section").append(errorMsg);
+
+
+var Place = function(data) {
+    var self = this;
+
+    self.name = ko.observable(data.name);
+    self.position = ko.observable(data.position);
+    
+    self.type = ko.observable(data.type);
+    self.image = ko.observable(function(data) {
+        return Icons[data.type()].url
+    }(self));
+
+    self.marker = ko.observable('');
+
 };
 
+var reactiveList = function(response){
+	if (response.marker().getAnimation() !== null) {
+			response.marker().setAnimation(null);
+	} else {
+	   		response.marker().setAnimation(google.maps.Animation.BOUNCE);
+	}
+ };
 
-var initMarker = function() {
 
-//Get the object containing the markers's attributes
+
+var viewModel = function() {
+
+	var self = this;
+
+	self.places = ko.observableArray([]);
+
+	//Get the object containing the markers's attributes
 
 	// For Loop to implement each marker
 	locations.forEach( function(location) {
@@ -40,8 +69,6 @@ var initMarker = function() {
 
 		var place = new Place(location);
 
-
-		console.log(place)
 
 		//Insert the text of the info string
 		
@@ -54,35 +81,41 @@ var initMarker = function() {
 		//Create the marker(s)
 
 		var marker = new google.maps.Marker({
-			position: location.position,
+			position: place.position(),
 			map: map,
-			title: location.name,
+			title: place.name(),
 			animation: google.maps.Animation.DROP,
 			zIndex: i++,
 			icon: place.image()
 		});
-
-
-		var toggleBounce = function() {
-			if (marker.getAnimation() !== null) {
-				marker.setAnimation(null);
-			} else {
-		   		marker.setAnimation(google.maps.Animation.BOUNCE);
-			}
-		};
 
 		//Add an event listener to react on click
 		marker.addListener('click', function() {
 			infowindow.open(map, marker);
 		});
 
-		marker.addListener('click', toggleBounce);
 
-		markers.push(marker);
+		place.marker = ko.observable(marker);
+
+		self.places.push(place);
 
 	});
 
+	/* !!!!!!!! Build in search function  !!!!!*/
+	self.query = ko.observable('');
+
+	self.searchedPlaces = ko.computed(function() {
+		return ko.utils.arrayFilter(self.places(), function(item) {
+            console.log(item);
+			return (item.name().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
+        });
+	});
 };
 
 
+// Fallback function for Google Maps
+var failMap = function() {
+	var errorMsg = '<div><img src="images/error.jpg" alt="a picture from Ben Lui" class="img-responsive"><p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p></div>'; 
+	$("#map-section").append(errorMsg);
+};
 

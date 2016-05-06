@@ -1,43 +1,3 @@
-
-var Place = function(data) {
-    var self = this;
-
-    self.name = ko.observable(data.name);
-    self.position = ko.observable(data.position);
-    
-    self.type = ko.observable(data.type);
-    self.image = ko.observable(function(data) {
-        return Icons[data.type()].url
-    }(self));
-
-
-
-};
-
-var viewModel = function() {
-
-	var self = this;
-    
-	self.places = ko.observableArray('');
-
-    locations.forEach( function(location) {
-        self.places().push(new Place(location));
-    });
-
-	self.query = ko.observable('');
-
-	self.searchedPlaces = ko.computed(function() {
-		return ko.utils.arrayFilter(self.places(), function(item) {
-            console.log(item);
-			return (item.name().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
-        });
-	});
-}
-
-
-
-
-
 var loadWiki = function(input) {
 
 	console.log(input)
@@ -91,5 +51,3 @@ var loadWiki = function(input) {
 
 };
 
-
-ko.applyBindings(new viewModel());
