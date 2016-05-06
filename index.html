@@ -7,7 +7,7 @@
 	<title>Guillaume's second run</title>
 	<meta name="author" value="Guillaume Simler">
 
-	<!-- CSS  -->
+	<!-- CSS  Section-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 
@@ -65,7 +65,8 @@
 
 	<!-- Templates -->
 	<script type="text/html" id="list-template">
-		<li data-bind="click: reactiveList"> 
+		<!--trigger the bouncing in the displayed list -->
+		<li data-bind="click: reactiveList">  
 			<span data-bind="text: name"></span> (<span data-bind="text: type"></span>) 
 		</li>
 		<br>
@@ -77,9 +78,8 @@
 	<!-- Load Modules -->
 	<script type="text/javascript" src="js\model.js"></script>
 	<script type="text/javascript" src="js\app.js"></script>
-	<script type="text/javascript" src="js\maps.js"></script>
 
-	 <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4EO8h7lLzFAB_Y3jaflAJkFdhRgr_OVc&callback=initMap" onerror="failMap()"  ></script>
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4EO8h7lLzFAB_Y3jaflAJkFdhRgr_OVc&callback=initMap" onerror="failMap()"  ></script>
 
 </body>
 
