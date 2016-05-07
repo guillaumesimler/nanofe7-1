@@ -19,7 +19,7 @@ var initMap = function() {
 	var mapAttr = MapCriteria;
 
 	//Load the map
-	var map = new google.maps.Map(document.getElementById('map-section'), {
+	map = new google.maps.Map(document.getElementById('map-section'), {
 		center: mapAttr.center,
 		zoom: mapAttr.zoom,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -199,3 +199,5 @@ var failMap = function() {
 	var errorMsg = '<div><img src="images/error.jpg" alt="a picture from Ben Lui" class="img-responsive"><p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p></div>'; 
 	$("#map-section").append(errorMsg);
 };
+
+
