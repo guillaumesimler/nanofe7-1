@@ -14,3 +14,7 @@
 	bottom: 0px;
 }
 
+.result-list {
+	max-height: 60vh;
+	overflow: auto;
+}

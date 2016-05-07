@@ -196,8 +196,7 @@ var reactiveList = function(response){
 
 // Fallback function for Google Maps
 var failMap = function() {
-	var errorMsg = '<div><img src="images/error.jpg" alt="a picture from Ben Lui" class="img-responsive"><p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p></div>'; 
+	var errorMsg = '<div> <picture>' + '<source media="(min-width: 800px)" srcset="images/error-800_2x.jpg 2x, images/error-800_1x.jpg 1x">' + '<source media="(max-width: 799px)" srcset="images/error-400_2x.jpg 2x, images/error-400_1x.jpg 1x"> '+' <img src="images/error-800_1x.jpg" alt="a picture from Ben Lui" class="img-responsive"> '+' <p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p>'+'</picture></div>'; 
 	$("#map-section").append(errorMsg);
 };
-
 

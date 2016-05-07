@@ -11,7 +11,7 @@ var MapCriteria = {
 		lat: 56.436425, 
 		lng: -4.711097
 		},
-	zoom: 11
+	zoom: 10
 };
 		
 

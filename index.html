@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <!-- **********  Guillaume's Munro Maps ***********
 
 A program by Guillaume Simler as part of the Udacity FEND (Project now 7)
@@ -10,13 +11,15 @@ This is a good training exercise for using
 -->
 
 
-<!DOCTYPE html>
+
 <html> 
 
 <head>
 	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Guillaume's Munro Maps</title>
-	<meta name="author" value="Guillaume Simler">
+	<meta name="author" content="Guillaume Simler">
+	
 
 	<!-- CSS  Section-->
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
@@ -57,11 +60,10 @@ This is a good training exercise for using
 		
 		<br><br>
 
-		<div>
+		<div class= "result-list">
 			<ul data-bind="template: {name: 'list-template', foreach: searchedPlaces} "></ul>
 		</div>
 
-		</div>
 
 		<div class="credits"><em>Credits</em> <br>
 			Icons by <a href="https://www.iconfinder.com/DemSt"><b>Laura Reen</b></a> used under <a href="http://creativecommons.org/licenses/by/3.0/">Creative Commons (Attribution 3.0 Unported)</a> 
@@ -85,11 +87,13 @@ This is a good training exercise for using
 	</script>
 
 	<!-- Load Libraries-->
-	<script type="text/javascript" src="js\libs\jquery-2.2.3.min.js"></script>
-	<script type="text/javascript" src="js\libs\knockout-3.4.0.js"></script>
+	<script type="text/javascript" src="js/libs/jquery-2.2.3.min.js"></script>
+	<script type="text/javascript" src="js/libs/knockout-3.4.0.js"></script>
+	<script type="text/javascript" src="js/libs/picturefill.min.js" async></script>
+
 	<!-- Load Modules -->
-	<script type="text/javascript" src="js\model.js"></script>
-	<script type="text/javascript" src="js\app.js"></script>
+	<script type="text/javascript" src="js/model.js"></script>
+	<script type="text/javascript" src="js/app.js"></script>
 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB4EO8h7lLzFAB_Y3jaflAJkFdhRgr_OVc&callback=initMap" onerror="failMap()"  ></script>
 

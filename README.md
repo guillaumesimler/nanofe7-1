@@ -33,6 +33,7 @@ Used resources
 * [**knockout**](http://knockoutjs.com/)
 * [**jquery**](https://jquery.com/)
 * [**Bootstrap v3.3.6**](http://getbootstrap.com/)
+* **picturefill**, a way to allow the picture tag in Safari
 
 ### APIs
 
