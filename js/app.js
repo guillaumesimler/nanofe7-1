@@ -19,7 +19,7 @@ var initMap = function() {
 	var mapAttr = MapCriteria;
 
 	//Load the map
-	map = new google.maps.Map(document.getElementById('map-section'), {
+	var map = new google.maps.Map(document.getElementById('map-section'), {
 		center: mapAttr.center,
 		zoom: mapAttr.zoom,
 		mapTypeId: google.maps.MapTypeId.TERRAIN
@@ -77,9 +77,18 @@ var viewModel = function() {
 	self.query = ko.observable('');
 
 	self.searchedPlaces = ko.computed(function() {
-       	// markerOut(self.places());
+
 		return ko.utils.arrayFilter(self.places(), function(item) {
-    		return (item.name().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
+    		var checkVal = (item.name().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ||(item.type().toLowerCase().indexOf(self.query().toLowerCase()) >= 0) ;
+
+        	if (checkVal) {
+        		item.marker().setVisible(true);
+        	} else { 
+        		item.marker().setVisible(false);
+        	}
+
+        	return checkVal;
+
         });
 	});
 
@@ -105,7 +114,7 @@ var Place = function(data) {
 
     // Gets the icon depending on its type
     self.image = ko.observable(function(data) {
-        return Icons[data.type()].url
+        return Icons[data.type()].url;
     }(self));
 
     self.marker = ko.observable('');
@@ -153,7 +162,7 @@ var loadWiki = function(input, infowindow) {
             } else {
 
             	content = ('<p> failed to get this specific wikipedia article about ' + Input + 
-            		'</p><p>Please try with the <a href="https://en.wikipedia.org/wiki/Munro" target="_blank">generic article about Munros</a></p>')
+            		'</p><p>Please try with the <a href="https://en.wikipedia.org/wiki/Munro" target="_blank">generic article about Munros</a></p>');
             }          
 
             infowindow.setContent(content);
@@ -162,7 +171,7 @@ var loadWiki = function(input, infowindow) {
         // Fallback n°2: in this case the AJAX request completely failed and this creates this error message
         error: function(response){
             content = ('<p> failed to get this specific wikipedia article about ' + Input + 
-                '</p><p>A major problem occured with Wikipedia - please try later or contact your administrator</a></p>')
+                '</p><p>A major problem occured with Wikipedia - please try later or contact your administrator</a></p>');
            
 			
             infowindow.setContent(content);
@@ -190,27 +199,3 @@ var failMap = function() {
 	var errorMsg = '<div><img src="images/error.jpg" alt="a picture from Ben Lui" class="img-responsive"><p>This is indeed a Munro, but you should see a Map instead. There was an error with Google Maps</p></div>'; 
 	$("#map-section").append(errorMsg);
 };
-
-
-// Make all markers invisible
-
-var  markerOut = function(items) {
-	console.log(items);
-
-	items.forEach( function(item) {
-		item.marker().setVisible(false)
-	})
-
-	console.log('markers out')
-} 
-
-var  markerIn = function(items) {
-	console.log(items());
-
-	items().forEach( function(item) {
-		item.marker().setVisible(true)
-	})
-
-    return items()
-} 
-

@@ -18,6 +18,12 @@ The aim of this project is to train how to use (i) AJAX requests and (ii) Framew
 
 This is the 7th project of the Udacity Front End Dev Nanodegree
 
+How to use
+----
+
+1. Clone the [Repo](https://github.com/guillaumesimler/nanofep7-1)
+2. Launch Index.html in your browser
+3. try and enjoy 
 
 Used resources
 ----
@@ -31,6 +37,7 @@ Used resources
 ### APIs
 
 * [**google maps api**](https://developers.google.com/maps/?hl=en)
+* [**wikipedia api**](https://www.mediawiki.org/wiki/API:Main_page)
 
 ### Other resources
 
