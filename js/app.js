@@ -46,8 +46,9 @@ var viewModel = function() {
 
 		//create the infowindow with Wikipedia informations (for more details,
 		//pleace look at the function itselfs)
-		var infowindow = new google.maps.InfoWindow();
-		loadWiki(place, infowindow);
+		place.infowindow = new google.maps.InfoWindow();
+
+		loadWiki(place, place.infowindow);
 		
 		//Create the marker(s)
 
@@ -62,7 +63,7 @@ var viewModel = function() {
 
 		//Add an event listener to react on click
 		marker.addListener('click', function() {
-			infowindow.open(map, marker);
+			place.infowindow.open(map, marker);
 
 			if (marker.getAnimation() !== null) {
 				marker.setAnimation(null);
@@ -209,14 +210,14 @@ var loadWiki = function(input, infowindow) {
 // Function enabling a response of when clicking an element of the list
 
 var reactiveList = function(response){
-	if (response.marker().getAnimation() !== null) {
-			response.marker().setAnimation(null);
-	} else {
-			response.marker().setAnimation(google.maps.Animation.BOUNCE);
-			setTimeout(function() { 
-				response.marker().setAnimation(null); 
-			}, 1000);
-	}
+
+	response.marker().setAnimation(google.maps.Animation.BOUNCE);
+	setTimeout(function() { 
+		response.marker().setAnimation(null); 
+	}, 1000);
+
+	response.infowindow.open(map, response.marker())
+	
  };
 
 

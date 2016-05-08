@@ -1,20 +1,21 @@
 
+body {
+	max-height: 100vh
+}
+
 .map {
-	height: 100vh;
+	min-height: 90vh;
 }
 
-
-.input-field{
-	width: 100%;
-	margin-bottom: 20px;
-}
-
-.credits{
-	position:fixed;
-	margin: 25 0;
-}
 
 .result-list {
 	max-height: 60vh;
 	overflow: auto;
 }
+
+
+@media only screen and (max-width: 768px) {
+	.result-display{
+		display: none;
+	}
+} 
