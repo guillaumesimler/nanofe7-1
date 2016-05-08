@@ -250,3 +250,4 @@ var failMap = function() {
 	$("#map-section").append(errorMsg);
 };
 
+
