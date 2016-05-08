@@ -57,7 +57,7 @@ The improvements and major changes will be discussed on the [Github wiki](#)
 
 Repository 
 ----
-
+* the [hosted page](http://guillaumesimler.github.io/nanofep7-1/)
 * the [working project](https://github.com/guillaumesimler/nanofep7-1)
 
 License

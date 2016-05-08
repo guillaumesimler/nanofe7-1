@@ -9,13 +9,30 @@ body {
 
 
 .result-list {
-	max-height: 60vh;
 	overflow: auto;
+	position: absolute;
+	right:0;
+	background-color: rgba(138, 126, 123, 0.70);
+	color: white;
+	font-weight: bold;
+	padding: 5px;
 }
 
+/* Fitting smaler screens*/
 
 @media only screen and (max-width: 768px) {
 	.result-display{
 		display: none;
+	}
+
+	.result-list {
+		max-height: 40vh;
+		max-width: 50vw;
+		bottom:0;
+		font-size: 11px;
+	}
+
+	.credits {
+		font-size: 10px;
 	}
 } 

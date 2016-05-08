@@ -159,7 +159,20 @@ var loadWiki = function(input, infowindow) {
 	var WikiUrl = 'https://en.wikipedia.org/w/api.php?action=opensearch&search=' + 
 		Input + '&prop=revisions&rvprop=content&format=json&callback=wikiCallback';
 	
-   
+	// Last Fallback option as requested by rubric. Though this solution was 
+	// not needed. The "catastrophic" error could not happen as the user has
+	// no mean to change the Url. My previous version was sufficient !
+	
+	var abortRequest = setTimeout( function(){
+		content = ('<p> failed to get this specific wikipedia article about ' + 
+			Input + '</p><p>A major problem occured with Wikipedia - '+
+			'please try later or contact your administrator</a></p>');
+
+		
+		infowindow.setContent(content);
+	},2500);
+
+
 	$.ajax({
 		url:WikiUrl,
 		dataType: "jsonp"
@@ -188,6 +201,8 @@ var loadWiki = function(input, infowindow) {
 			}          
 
 			infowindow.setContent(content);
+
+			clearTimeout(abortRequest);
 		})
 
 		/* Fallback n°2: in this case the AJAX request completely failed and 
@@ -200,6 +215,8 @@ var loadWiki = function(input, infowindow) {
 
 			
 			infowindow.setContent(content);
+
+			clearTimeout(abortRequest);
 		}
 	);
 };
